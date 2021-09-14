@@ -1,0 +1,28 @@
+{
+	"name": "sudobee/lyra",
+	"description": "Common library to simplify connection with Lyra's services",
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "SudoBee",
+			"email": "info@sudobee.com"
+		}
+	],
+	"require": {
+		"php": "^8.0",
+		"ext-json": "*",
+		"ext-curl": "*"
+	},
+	"require-dev": {
+		"pestphp/pest": "^1.15",
+		"spatie/ray": "^1.29"
+	},
+	"autoload": {
+		"psr-4": {
+			"SudoBee\\Lyra\\": "src"
+		}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
+}
