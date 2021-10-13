@@ -13,10 +13,9 @@ class ShipmentsProcessor extends Processor
 		string $shippingMethod,
 		Order $order,
 		Receiver $receiver,
-		string $status = ShipmentStatus::READY_TO_PROCESS
+		string $status = ShipmentStatus::PAID_ORDER_CREATED
 	): ?string {
-
-		$response = $this->postRequest('shipments', [
+		[$status, $response] = $this->postRequest('shipments', [
 			'status' => $status,
 			'order' => [
 				'shop_reference_id' => $order->getReferenceId(),
@@ -43,6 +42,15 @@ class ShipmentsProcessor extends Processor
 		return is_array($response) && array_key_exists('id', $response)
 			? $response['id']
 			: null;
+	}
+
+	public function update(string $shipmentId, string $status): bool
+	{
+		[$status, $response] = $this->postRequest('shipments/' . $shipmentId, [
+			'status' => $status,
+		]);
+
+		return $status === 200;
 	}
 
 	/**

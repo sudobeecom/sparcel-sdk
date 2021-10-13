@@ -3,8 +3,10 @@
 use SudoBee\Lyra\Entities\Item;
 use SudoBee\Lyra\Entities\Order;
 use SudoBee\Lyra\Entities\Receiver;
+use SudoBee\Lyra\Enums\ShipmentStatus;
 
-it('should create new shipment', function () {
+function createShipment(): ?string
+{
 	$shippingMethods = lyra()->shippingMethods->get();
 
 	$shippingMethod = $shippingMethods[0];
@@ -15,7 +17,7 @@ it('should create new shipment', function () {
 		->setFullName('Tom Edison')
 		->setEmail('tom@example.com')
 		->setPhoneNumber('+31686153286')
-		->setLocation($locations[0]);
+		->setLocationId($locations[0]->getId());
 
 	$order = Order::make()
 		->setReferenceId('#3214')
@@ -28,7 +30,27 @@ it('should create new shipment', function () {
 				->setQuantity(1),
 		]);
 
-	$shipment = lyra()->shipments->create($shippingMethod->getId(), $order, $receiver);
+	return lyra()->shipments->create(
+		$shippingMethod->getId(),
+		$order,
+		$receiver,
+		ShipmentStatus::ORDER_CREATED
+	);
+}
 
-	expect($shipment)->toBeString();
+it('should create new shipment', function () {
+	$shipmentId = createShipment();
+
+	expect($shipmentId)->toBeString();
+});
+
+it('should update existing shipment', function () {
+	$shipmentId = createShipment();
+
+	$statusUpdate = lyra()->shipments->update(
+		$shipmentId,
+		ShipmentStatus::ORDER_CANCELLED
+	);
+
+	expect($statusUpdate)->toBeTrue();
 });

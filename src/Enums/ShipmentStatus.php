@@ -4,13 +4,13 @@ namespace SudoBee\Lyra\Enums;
 
 class ShipmentStatus
 {
-	const FAILED = 'FAILED';
+	const ORDER_CANCELLED = 'OrderCancelled';
 
-	const CANCELLED = 'CANCELLED';
+	const ORDER_CREATED = 'OrderCreated';
 
-	const WAITING_FOR_PAYMENT = 'WAITING_FOR_PAYMENT';
+	const ORDER_FAILED = 'OrderFailed';
 
-	const READY_TO_PROCESS = 'READY_TO_PROCESS';
+	const ORDER_PAYMENT_RECEIVED = 'OrderPaymentReceived';
 
-	const PROCESSED = 'PROCESSED';
+    const PAID_ORDER_CREATED = 'PaidOrderCreated';
 }

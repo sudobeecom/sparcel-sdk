@@ -3,7 +3,7 @@
 use SudoBee\Lyra\Configuration;
 use SudoBee\Lyra\Enums\Integration;
 
-it('should return connection url when secret key is null', function () {
+it('should return connection url', function () {
 	/**
 	 * getUrl() utilizes HTTP_HOST variable to construct shop's url.
 	 * As this variable is not available on testing, we have to
@@ -13,20 +13,13 @@ it('should return connection url when secret key is null', function () {
 
 	$url = lyra(Configuration::make(null))->connection->getUrl(
 		Integration::WOOCOMMERCE,
-		'Test shop'
+		'Test shop',
+		'TEST'
 	);
 
-	expect($url)
-		->toBeString()
-		->toStartWith('http://lyra.test/connect?data=');
-});
-
-it('should return no connection url when secret key is provided', function () {
-	$_SERVER['HTTP_HOST'] = 'localhost';
-
-	$url = lyra()->connection->getUrl(Integration::WOOCOMMERCE, 'Test shop');
-
-	expect($url)->toBeNull();
+	expect($url)->toBe(
+		'http://lyra.test/v1/connect?data=eyJpbnRlZ3JhdGlvbiI6Ildvb0NvbW1lcmNlIiwibmFtZSI6IlRlc3Qgc2hvcCIsInVybCI6Imh0dHA6XC9cL2xvY2FsaG9zdCIsInNlY3JldCI6IlRFU1QifQ=='
+	);
 });
 
 it('should return generated secret key', function () {

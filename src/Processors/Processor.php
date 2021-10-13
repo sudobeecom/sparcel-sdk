@@ -55,9 +55,11 @@ abstract class Processor
 
 		$output = curl_exec($session);
 
+		$status = curl_getinfo($session, CURLINFO_HTTP_CODE);
+
 		curl_close($session);
 
-		return json_decode($output, true);
+		return [$status, json_decode($output, true)];
 	}
 
 	private function getServerEndpoint(): string

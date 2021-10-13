@@ -13,7 +13,7 @@ class LocationsProcessor extends Processor
 	 */
 	public function get(string $carrier, string $country = null): array
 	{
-		$locations = $this->getRequest(
+		[$status, $locations] = $this->getRequest(
 			'locations/' . $carrier . ($country !== null ? '?country=' . $country : '')
 		);
 

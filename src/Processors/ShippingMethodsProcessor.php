@@ -11,7 +11,7 @@ class ShippingMethodsProcessor extends Processor
 	 */
 	public function get(): array
 	{
-		$shippingMethods = $this->getRequest('shippingMethods');
+		[$status, $shippingMethods] = $this->getRequest('shippingMethods');
 
 		return $this->transformArrayToEntities(ShippingMethod::class, $shippingMethods);
 	}
