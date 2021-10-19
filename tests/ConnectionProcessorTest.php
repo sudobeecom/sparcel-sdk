@@ -27,3 +27,13 @@ it('should return generated secret key', function () {
 
 	expect($key)->toBeString();
 });
+
+it('should disconnect shop', function () {
+	$disconnected = lyra()->connection->disconnect();
+
+	expect($disconnected)->toBeTrue();
+
+	$disconnected = lyra()->connection->disconnect();
+
+	expect($disconnected)->toBeFalse();
+});

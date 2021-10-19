@@ -25,6 +25,13 @@ class ConnectionProcessor extends Processor
 		return password_hash(random_bytes(32), PASSWORD_DEFAULT);
 	}
 
+	public function disconnect(): bool
+	{
+		[$status, $response] = $this->postRequest('disconnect');
+
+		return $status === 200;
+	}
+
 	private function getHostUrl(): string
 	{
 		$protocol = $this->isUsingSecureConnection() ? 'https://' : 'http://';
