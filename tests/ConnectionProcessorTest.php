@@ -11,7 +11,7 @@ it("should return connection url", function () {
 	 */
 	$_SERVER["HTTP_HOST"] = "localhost";
 
-	$url = lyra(Configuration::make(null))->connection->getUrl(
+	$url = sparcel(Configuration::make(null))->connection->getUrl(
 		Integration::WOOCOMMERCE,
 		"Test shop",
 		"TEST"
@@ -23,17 +23,17 @@ it("should return connection url", function () {
 });
 
 it("should return generated secret key", function () {
-	$key = lyra()->connection->generateSecretKey();
+	$key = sparcel()->connection->generateSecretKey();
 
 	expect($key)->toBeString();
 });
 
 it("should disconnect shop", function () {
-	$disconnected = lyra()->connection->disconnect();
+	$disconnected = sparcel()->connection->disconnect();
 
 	expect($disconnected)->toBeTrue();
 
-	$disconnected = lyra()->connection->disconnect();
+	$disconnected = sparcel()->connection->disconnect();
 
 	expect($disconnected)->toBeFalse();
 })->skip(

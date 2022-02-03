@@ -7,7 +7,7 @@ use SudoBee\Sparcel\Sparcel;
 
 abstract class Store
 {
-	private ?Sparcel $lyra = null;
+	private ?Sparcel $sparcel = null;
 
 	private StoreData $storeData;
 
@@ -60,8 +60,8 @@ abstract class Store
 
 	public function updateShippingMethods(): self
 	{
-		if ($this->lyra !== null) {
-			$shippingMethods = $this->lyra->shippingMethods->get();
+		if ($this->sparcel !== null) {
+			$shippingMethods = $this->sparcel->shippingMethods->get();
 
 			$this->update(
 				$this->storeData->setShippingMethods($shippingMethods)
@@ -71,9 +71,9 @@ abstract class Store
 		return $this;
 	}
 
-	public function setLyra(?Sparcel $lyra): self
+	public function setSparcel(?Sparcel $sparcel): self
 	{
-		$this->lyra = $lyra;
+		$this->sparcel = $sparcel;
 
 		return $this;
 	}

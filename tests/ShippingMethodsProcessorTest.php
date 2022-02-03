@@ -1,7 +1,7 @@
 <?php
 
 it("should return all shipping methods", function () {
-	$shippingMethods = lyra()->shippingMethods->get();
+	$shippingMethods = sparcel()->shippingMethods->get();
 
 	expect($shippingMethods)->toBeArray();
 });

@@ -7,11 +7,11 @@ use SudoBee\Sparcel\Enums\ShipmentStatus;
 
 function createShipment(): ?string
 {
-	$shippingMethods = lyra()->shippingMethods->get();
+	$shippingMethods = sparcel()->shippingMethods->get();
 
 	$shippingMethod = $shippingMethods[0];
 
-	$locations = lyra()->locations->get(
+	$locations = sparcel()->locations->get(
 		$shippingMethod->getCarrier()->getSlug(),
 		"LT"
 	);
@@ -34,7 +34,7 @@ function createShipment(): ?string
 				->setQuantity(1),
 		]);
 
-	return lyra()->shipments->create(
+	return sparcel()->shipments->create(
 		$shippingMethod->getId(),
 		$order,
 		$receiver,
@@ -51,7 +51,7 @@ it("should create new shipment", function () {
 it("should update existing shipment", function () {
 	$shipmentId = createShipment();
 
-	$statusUpdate = lyra()->shipments->update(
+	$statusUpdate = sparcel()->shipments->update(
 		$shipmentId,
 		ShipmentStatus::ORDER_CANCELLED
 	);
