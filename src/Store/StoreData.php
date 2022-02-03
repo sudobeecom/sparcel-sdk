@@ -1,8 +1,8 @@
 <?php
 
-namespace SudoBee\Lyra\Store;
+namespace SudoBee\Sparcel\Store;
 
-use SudoBee\Lyra\Entities\ShippingMethod;
+use SudoBee\Sparcel\Entities\ShippingMethod;
 
 class StoreData
 {

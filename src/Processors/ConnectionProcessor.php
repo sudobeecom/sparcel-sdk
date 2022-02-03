@@ -1,22 +1,25 @@
 <?php
 
-namespace SudoBee\Lyra\Processors;
+namespace SudoBee\Sparcel\Processors;
 
 class ConnectionProcessor extends Processor
 {
-	public function getUrl(string $integration, string $name, $secretKey): string
-	{
+	public function getUrl(
+		string $integration,
+		string $name,
+		$secretKey
+	): string {
 		$encodedData = base64_encode(
 			json_encode([
-				'integration' => $integration,
-				'name' => $name,
-				'url' => $this->getHostUrl(),
-				'secret' => $secretKey,
+				"integration" => $integration,
+				"name" => $name,
+				"url" => $this->getHostUrl(),
+				"secret" => $secretKey,
 			])
 		);
 
 		return $this->configuration->getServerEndpoint() .
-			'/v1/connect?data=' .
+			"/v1/connect?data=" .
 			$encodedData;
 	}
 
@@ -27,29 +30,29 @@ class ConnectionProcessor extends Processor
 
 	public function disconnect(): bool
 	{
-		[$status, $response] = $this->postRequest('disconnect');
+		[$status, $response] = $this->postRequest("disconnect");
 
 		return $status === 200;
 	}
 
 	private function getHostUrl(): string
 	{
-		$protocol = $this->isUsingSecureConnection() ? 'https://' : 'http://';
+		$protocol = $this->isUsingSecureConnection() ? "https://" : "http://";
 
-		return $protocol . $_SERVER['HTTP_HOST'];
+		return $protocol . $_SERVER["HTTP_HOST"];
 	}
 
 	private function isUsingSecureConnection(): bool
 	{
-		if (!isset($_SERVER['HTTPS'])) {
+		if (!isset($_SERVER["HTTPS"])) {
 			return false;
 		}
 
-		if ($_SERVER['HTTPS'] === 'on') {
+		if ($_SERVER["HTTPS"] === "on") {
 			return true;
 		}
 
-		if ($_SERVER['SERVER_PORT'] === 443) {
+		if ($_SERVER["SERVER_PORT"] === 443) {
 			return true;
 		}
 

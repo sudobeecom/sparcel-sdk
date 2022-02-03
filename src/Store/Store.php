@@ -1,13 +1,13 @@
 <?php
 
-namespace SudoBee\Lyra\Store;
+namespace SudoBee\Sparcel\Store;
 
-use SudoBee\Lyra\Entities\ShippingMethod;
-use SudoBee\Lyra\Lyra;
+use SudoBee\Sparcel\Entities\ShippingMethod;
+use SudoBee\Sparcel\Sparcel;
 
 abstract class Store
 {
-	private ?Lyra $lyra = null;
+	private ?Sparcel $lyra = null;
 
 	private StoreData $storeData;
 
@@ -63,13 +63,15 @@ abstract class Store
 		if ($this->lyra !== null) {
 			$shippingMethods = $this->lyra->shippingMethods->get();
 
-			$this->update($this->storeData->setShippingMethods($shippingMethods));
+			$this->update(
+				$this->storeData->setShippingMethods($shippingMethods)
+			);
 		}
 
 		return $this;
 	}
 
-	public function setLyra(?Lyra $lyra): self
+	public function setLyra(?Sparcel $lyra): self
 	{
 		$this->lyra = $lyra;
 

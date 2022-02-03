@@ -1,15 +1,14 @@
 <?php
 
-namespace SudoBee\Lyra;
+namespace SudoBee\Sparcel;
 
-use SudoBee\Lyra\Configuration;
-use SudoBee\Lyra\Processors\ConnectionProcessor;
-use SudoBee\Lyra\Processors\LocationsProcessor;
-use SudoBee\Lyra\Processors\ShipmentsProcessor;
-use SudoBee\Lyra\Processors\ShippingMethodsProcessor;
-use SudoBee\Lyra\Processors\ViewsProcessor;
+use SudoBee\Sparcel\Processors\ConnectionProcessor;
+use SudoBee\Sparcel\Processors\LocationsProcessor;
+use SudoBee\Sparcel\Processors\ShipmentsProcessor;
+use SudoBee\Sparcel\Processors\ShippingMethodsProcessor;
+use SudoBee\Sparcel\Processors\ViewsProcessor;
 
-class Lyra
+class Sparcel
 {
 	public ConnectionProcessor $connection;
 

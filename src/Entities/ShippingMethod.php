@@ -1,6 +1,6 @@
 <?php
 
-namespace SudoBee\Lyra\Entities;
+namespace SudoBee\Sparcel\Entities;
 
 class ShippingMethod
 {

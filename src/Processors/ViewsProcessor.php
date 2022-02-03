@@ -1,6 +1,6 @@
 <?php
 
-namespace SudoBee\Lyra\Processors;
+namespace SudoBee\Sparcel\Processors;
 
 class ViewsProcessor extends Processor
 {

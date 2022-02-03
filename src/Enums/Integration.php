@@ -1,6 +1,6 @@
 <?php
 
-namespace SudoBee\Lyra\Enums;
+namespace SudoBee\Sparcel\Enums;
 
 class Integration
 {

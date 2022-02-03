@@ -1,9 +1,9 @@
 <?php
 
-use SudoBee\Lyra\Entities\Item;
-use SudoBee\Lyra\Entities\Order;
-use SudoBee\Lyra\Entities\Receiver;
-use SudoBee\Lyra\Enums\ShipmentStatus;
+use SudoBee\Sparcel\Entities\Item;
+use SudoBee\Sparcel\Entities\Order;
+use SudoBee\Sparcel\Entities\Receiver;
+use SudoBee\Sparcel\Enums\ShipmentStatus;
 
 function createShipment(): ?string
 {
@@ -11,21 +11,25 @@ function createShipment(): ?string
 
 	$shippingMethod = $shippingMethods[0];
 
-	$locations = lyra()->locations->get($shippingMethod->getCarrier()->getSlug(), 'LT');
+	$locations = lyra()->locations->get(
+		$shippingMethod->getCarrier()->getSlug(),
+		"LT"
+	);
 
 	$receiver = Receiver::make()
-		->setFullName('Tom Edison')
-		->setEmail('tom@example.com')
-		->setPhoneNumber('+31686153286')
-		->setLocationId($locations[0]->getId());
+		->setFullName("Tom Edison")
+		->setEmail("tom@example.com")
+		->setPhoneNumber("+31686153286")
+		->setLocationId($locations[0]->getId())
+		->setCountry("LT");
 
 	$order = Order::make()
-		->setReferenceId('#3214')
+		->setReferenceId("#3214")
 		->setTotalPrice(2000)
-		->setCurrency('EUR')
+		->setCurrency("EUR")
 		->setItems([
 			Item::make()
-				->setName('Test item')
+				->setName("Test item")
 				->setPrice(1000)
 				->setQuantity(1),
 		]);
@@ -38,13 +42,13 @@ function createShipment(): ?string
 	);
 }
 
-it('should create new shipment', function () {
+it("should create new shipment", function () {
 	$shipmentId = createShipment();
 
 	expect($shipmentId)->toBeString();
 });
 
-it('should update existing shipment', function () {
+it("should update existing shipment", function () {
 	$shipmentId = createShipment();
 
 	$statusUpdate = lyra()->shipments->update(

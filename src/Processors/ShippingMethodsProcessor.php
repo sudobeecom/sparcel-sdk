@@ -1,8 +1,8 @@
 <?php
 
-namespace SudoBee\Lyra\Processors;
+namespace SudoBee\Sparcel\Processors;
 
-use SudoBee\Lyra\Entities\ShippingMethod;
+use SudoBee\Sparcel\Entities\ShippingMethod;
 
 class ShippingMethodsProcessor extends Processor
 {
@@ -11,8 +11,11 @@ class ShippingMethodsProcessor extends Processor
 	 */
 	public function get(): array
 	{
-		[$status, $shippingMethods] = $this->getRequest('shippingMethods');
+		[$status, $shippingMethods] = $this->getRequest("shippingMethods");
 
-		return $this->transformArrayToEntities(ShippingMethod::class, $shippingMethods);
+		return $this->transformArrayToEntities(
+			ShippingMethod::class,
+			$shippingMethods
+		);
 	}
 }

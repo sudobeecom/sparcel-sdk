@@ -1,8 +1,8 @@
 <?php
 
-namespace SudoBee\Lyra\Processors;
+namespace SudoBee\Sparcel\Processors;
 
-use SudoBee\Lyra\Entities\Location;
+use SudoBee\Sparcel\Entities\Location;
 
 class LocationsProcessor extends Processor
 {

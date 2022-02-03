@@ -1,11 +1,11 @@
 <?php
 
-namespace SudoBee\Lyra\Processors;
+namespace SudoBee\Sparcel\Processors;
 
-use SudoBee\Lyra\Entities\Item;
-use SudoBee\Lyra\Entities\Order;
-use SudoBee\Lyra\Entities\Receiver;
-use SudoBee\Lyra\Enums\ShipmentStatus;
+use SudoBee\Sparcel\Entities\Item;
+use SudoBee\Sparcel\Entities\Order;
+use SudoBee\Sparcel\Entities\Receiver;
+use SudoBee\Sparcel\Enums\ShipmentStatus;
 
 class ShipmentsProcessor extends Processor
 {

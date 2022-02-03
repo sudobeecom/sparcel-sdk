@@ -1,6 +1,6 @@
 {
-	"name": "sudobee/lyra",
-	"description": "Common library to simplify connection with Lyra's services",
+	"name": "sudobee/sparcel",
+	"description": "Common library to simplify connection with Sparcel services",
 	"type": "library",
 	"license": "MIT",
 	"authors": [
@@ -10,19 +10,23 @@
 		}
 	],
 	"require": {
-		"php": "^8.0",
+		"php": "^7.4|^8.0|^8.1",
 		"ext-json": "*",
 		"ext-curl": "*"
 	},
 	"require-dev": {
-		"pestphp/pest": "^1.15",
-		"spatie/ray": "^1.29"
+		"pestphp/pest": "^1.15"
 	},
 	"autoload": {
 		"psr-4": {
-			"SudoBee\\Lyra\\": "src"
+			"SudoBee\\Sparcel\\": "src"
 		}
 	},
 	"minimum-stability": "dev",
-	"prefer-stable": true
+	"prefer-stable": true,
+	"config": {
+		"allow-plugins": {
+			"pestphp/pest-plugin": true
+		}
+	}
 }

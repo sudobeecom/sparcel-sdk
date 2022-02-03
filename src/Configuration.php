@@ -1,12 +1,12 @@
 <?php
 
-namespace SudoBee\Lyra;
+namespace SudoBee\Sparcel;
 
 class Configuration
 {
-	const PUBLIC_SERVER_ENDPOINT = 'http://lyra.test';
+	const PUBLIC_SERVER_ENDPOINT = "https://sparcel.io";
 
-	const API_VERSION = 'v1';
+	const API_VERSION = "v1";
 
 	private string $serverEndpoint;
 
